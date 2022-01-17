@@ -1,0 +1,43 @@
+{
+  "name": "graphql-studies",
+  "version": "1.0.0",
+  "description": "- Uma linguagem de consulta, não é uma biblioteca, não é um framework nem nada do tipo. - Não importa a linguagem: javascript, php, etc... GraphQL pode ser utilizado por qualquer linguagem, pois é apenas uma linguagem para consulta.",
+  "main": "index.js",
+  "scripts": {
+    "start-dev": "nodemon --watch 'src/' --exec 'ts-node src/app.ts' -e ts",
+    "start-prod": "tsc && node dist/src/app.js",
+    "test": "jest",
+    "build": "tsc",
+    "lint": "npx eslint .",
+    "recreate-db": "npx knex migrate:rollback --all && npx knex migrate:latest",
+    "seed-db": "npx knex seed:run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/godinhojoao/graphql-studies.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/godinhojoao/graphql-studies/issues"
+  },
+  "homepage": "https://github.com/godinhojoao/graphql-studies#readme",
+  "dependencies": {
+    "apollo-server": "^3.6.1",
+    "graphql": "^16.2.0",
+    "knex": "^1.0.1",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0"
+  }
+}
