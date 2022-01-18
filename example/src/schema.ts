@@ -2,8 +2,8 @@ import { gql } from 'apollo-server'
 
 const typeDefs = gql`
   type Query {
-    books: [Book!]
-    book(id: Int!): Book
+    getBooks: [Book!]
+    getBook(id: Int!): Book
   }
 
   type Mutation {

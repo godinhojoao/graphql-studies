@@ -4,7 +4,7 @@ import Knex from 'knex'
 
 const knex = Knex(knexfile.development)
 
-class Db {
+class Db implements Db {
   async getBooks (): Promise<Book[]> {
     const books = await knex('books').where({ archived: false })
     return books

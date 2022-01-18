@@ -1,14 +1,11 @@
-import { Book } from './../../../interfaces'
-import { Db } from './../../../core/db'
+import { Book, Db } from './../../../interfaces'
 
-const db = new Db()
-
-const books = async (): Promise<Book[]> => {
+const getBooks = async (_: never, __: never, { db }: { db: Db }): Promise<Book[]> => {
   return await db.getBooks()
 }
 
-const book = async (_: never, { id }: { id: number }): Promise<Book> => {
+const getBook = async (_: never, { id }: { id: number }, { db }: { db: Db }): Promise<Book> => {
   return await db.getBookById(id)
 }
 
-export { books, book }
+export { getBooks, getBook }

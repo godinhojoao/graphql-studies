@@ -1,5 +1,5 @@
 [X] - Arrumar o knex + typescript
 [X] - Criar os metodos na classe db
 [X] - Consumir a classe db nos resolvers graphql
-[] - Implementar testes pras queries e mutations graphql
-[] - Adicionar tratamento de erro
+[X] - Implementar testes pras queries e mutations graphql
+[] - Adicionar tratamento de erro e testar os casos de erro

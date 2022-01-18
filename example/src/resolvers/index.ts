@@ -1,10 +1,10 @@
-import { books, book } from './queries/Books'
+import { getBooks, getBook } from './queries/Books'
 import { createBook, updateBook, deleteBook } from './mutations/Books'
 
 const resolvers = {
   Query: {
-    books,
-    book
+    getBooks,
+    getBook
   },
   Mutation: {
     createBook,
