@@ -1,10 +1,10 @@
-import { Book, UpdateBookInput } from '../interfaces'
+import { Book, UpdateBookInput, Db } from '../interfaces'
 import knexfile from '../../knexfile'
 import Knex from 'knex'
 
 const knex = Knex(knexfile.development)
 
-class Db implements Db {
+class BooksDb implements Db {
   async getBooks (): Promise<Book[]> {
     const books = await knex('books').where({ archived: false })
     return books
@@ -39,4 +39,4 @@ class Db implements Db {
   }
 }
 
-export { Db }
+export { BooksDb }

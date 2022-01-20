@@ -62,9 +62,11 @@ describe('Books queries', () => {
 })
 
 describe('Books mutations', () => {
-  it('Should create a book as expected', async () => {
-    const response = await server.executeOperation({
-      query: `
+
+  describe('Success calls', () => {
+    it('Should create a book as expected', async () => {
+      const response = await server.executeOperation({
+        query: `
         mutation createBook ($createBookInput: CreateBookInput!) {
           createBook (input: $createBookInput) {
             id,
@@ -73,29 +75,29 @@ describe('Books mutations', () => {
             archived
           }
         }`,
-      variables: {
-        createBookInput: {
+        variables: {
+          createBookInput: {
+            title: 'Livro do joão, dale',
+            author: 'Claúdinho',
+            archived: false
+          }
+        }
+      });
+
+      expect(response.errors).toBeUndefined()
+      expect(response.data).toEqual({
+        createBook: {
+          id: 4,
           title: 'Livro do joão, dale',
           author: 'Claúdinho',
           archived: false
         }
-      }
-    });
-
-    expect(response.errors).toBeUndefined()
-    expect(response.data).toEqual({
-      createBook: {
-        id: 4,
-        title: 'Livro do joão, dale',
-        author: 'Claúdinho',
-        archived: false
-      }
+      })
     })
-  })
 
-  it('Should delete a book as expected', async () => {
-    const response = await server.executeOperation({
-      query: `
+    it('Should delete a book as expected', async () => {
+      const response = await server.executeOperation({
+        query: `
         mutation deleteBook ($id: Int!) {
           deleteBook (id: $id) {
             id,
@@ -104,25 +106,25 @@ describe('Books mutations', () => {
             archived
           }
         }`,
-      variables: {
-        id: 4
-      }
-    });
+        variables: {
+          id: 4
+        }
+      });
 
-    expect(response.errors).toBeUndefined()
-    expect(response.data).toEqual({
-      deleteBook: {
-        id: 4,
-        title: 'Livro do joão, dale',
-        author: 'Claúdinho',
-        archived: true
-      }
+      expect(response.errors).toBeUndefined()
+      expect(response.data).toEqual({
+        deleteBook: {
+          id: 4,
+          title: 'Livro do joão, dale',
+          author: 'Claúdinho',
+          archived: true
+        }
+      })
     })
-  })
 
-  it('Should update a book as expected', async () => {
-    const response = await server.executeOperation({
-      query: `
+    it('Should update a book as expected', async () => {
+      const response = await server.executeOperation({
+        query: `
         mutation updateBook ($id: Int!, $updateBookInput: UpdateBookInput!) {
           updateBook (id: $id, input: $updateBookInput) {
             id,
@@ -131,23 +133,88 @@ describe('Books mutations', () => {
             archived
           }
         }`,
-      variables: {
-        id: 1,
-        updateBookInput: {
+        variables: {
+          id: 1,
+          updateBookInput: {
+            author: 'Testador brabo',
+            title: 'Livro legalzao',
+          }
+        }
+      });
+
+      expect(response.errors).toBeUndefined()
+      expect(response.data).toEqual({
+        updateBook: {
+          id: 1,
           author: 'Testador brabo',
           title: 'Livro legalzao',
+          archived: false
         }
-      }
-    });
+      })
+    })
+  })
 
-    expect(response.errors).toBeUndefined()
-    expect(response.data).toEqual({
-      updateBook: {
-        id: 1,
-        author: 'Testador brabo',
-        title: 'Livro legalzao',
-        archived: false
-      }
+  describe('Error calls', () => {
+    it('Should not update a book sending an inexistent id', async () => {
+      const response = await server.executeOperation({
+        query: `
+        mutation updateBook ($id: Int!, $updateBookInput: UpdateBookInput!) {
+          updateBook (id: $id, input: $updateBookInput) {
+            id,
+            author,
+            title,
+            archived
+          }
+        }`,
+        variables: {
+          id: 199,
+          updateBookInput: {
+            author: 'Testador brabo',
+            title: 'Livro legalzao',
+          }
+        }
+      });
+
+      expect(response.errors).toEqual([
+        {
+          extensions: { code: 'not found' },
+          locations: [{
+            column: 11,
+            line: 3
+          }],
+          message: 'book not found',
+          path: ['updateBook']
+        }
+      ])
+    })
+
+    it('Should not delete a book sending an inexistent id', async () => {
+      const response = await server.executeOperation({
+        query: `
+        mutation deleteBook ($id: Int!) {
+          deleteBook (id: $id) {
+            id,
+            author,
+            title,
+            archived
+          }
+        }`,
+        variables: {
+          id: 999
+        }
+      });
+
+      expect(response.errors).toEqual([
+        {
+          extensions: { code: 'not found' },
+          locations: [{
+            column: 11,
+            line: 3
+          }],
+          message: 'book not found',
+          path: ['deleteBook']
+        }
+      ])
     })
   })
 })
