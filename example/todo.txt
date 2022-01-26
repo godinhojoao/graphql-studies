@@ -3,5 +3,5 @@
 [X] - Consumir a classe db nos resolvers graphql
 [X] - Implementar testes pras queries e mutations graphql
 [X] - Adicionar tratamento de erro e testar os casos de erro
-[] - Adicionar validação e testar os casos de erro da validação
-[] - Adicionar ci/cd pra rodar o lint e os testes no repositório
+[X] - Adicionar validação e testar os casos de erro da validação
+[X] - Adicionar ci/cd pra rodar o lint e os testes no repositório
