@@ -1,7 +1,0 @@
-[X] - Arrumar o knex + typescript
-[X] - Criar os metodos na classe db
-[X] - Consumir a classe db nos resolvers graphql
-[X] - Implementar testes pras queries e mutations graphql
-[X] - Adicionar tratamento de erro e testar os casos de erro
-[X] - Adicionar validação e testar os casos de erro da validação
-[X] - Adicionar ci/cd pra rodar o lint e os testes no repositório

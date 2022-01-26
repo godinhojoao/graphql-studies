@@ -25,16 +25,18 @@ type Character {
 
 ## Aliases and arguments
 
-- Em APIs rest nós podemos enviar uma quantidade "limitada" de parametros. No entanto, com GraphQl, podemos enviar argumentos a cada propriedade!!
+- Em APIs rest nós podemos enviar uma quantidade "limitada" de parâmetros. Pois muitos parâmetros tornam a legibilidade da busca complicada. No entanto, com GraphQl, podemos enviar argumentos a cada propriedade!!
 - Além disso, para pegarmos o mesmo dado duas vezes, no entanto, "de formas diferentes". Podemos utilizar os `aliases`, estes são basicamente "apelidos" que damos a um campo.
 
 ```graphql
 {
   firstFollowers: followers(first: 3) {
+    # pega os primeiros 3 followers
     id
     name
   }
   lastFollowers: followers(last: 3) {
+    # pega os últimos 3 followers
     id
     name
   }
@@ -46,6 +48,7 @@ type Character {
 - São utilizados para reutilizarmos trechos de nossas queries que se repetem, tornando as queries muito mais legiveis e curtas.
 
 - Exemplo sem utilizar `fragments` em uma query
+
 ```graphql
 {
   Person {
@@ -73,6 +76,7 @@ type Character {
 ```
 
 - Exemplo utilizando `fragments` em uma query
+
 ```graphql
 {
   person {
@@ -91,7 +95,10 @@ type Character {
     }
   }
 
-  fragment userInfo on Person {
+  fragment
+  userInfo
+  on
+  Person {
     id
     bio
     avatarUrl
@@ -102,6 +109,7 @@ type Character {
 ## Operation name
 
 - Dessa forma nos damos um nome para nossa operação ( seja ela uma query ou uma mutation )
+
 ```graphql
 query queryPerson {
   person {
@@ -115,8 +123,10 @@ query queryPerson {
 ## Variables
 
 - Podemos passar valores argumentos dinamicos para nossa query ou mutation:
+
 ```graphql
-query HeroNameAndFriends($episode: Episode = JEDI) { ## dessa forma atribuimos um valor default
+query HeroNameAndFriends($episode: Episode = JEDI) {
+  ## dessa forma atribuimos um valor default
   hero(episode: $episode) {
     name
     friends {
@@ -126,7 +136,23 @@ query HeroNameAndFriends($episode: Episode = JEDI) { ## dessa forma atribuimos u
 }
 ```
 
+## Queries
+
+- São usadas para buscar dados, podemos enviar inputs como se fossem o body de requisições rest.
+
+```graphql
+query getBooks {
+  getBooks {
+    id
+    author
+    title
+    archived
+  }
+}
+```
+
 ## Mutations
+
 - São usadas para realizar mudanças em dados, seja criar, editar ou deletar.
 - Enquanto queries rodam em paralelo, mutations são executadas uma após a outra em série.
 
@@ -145,7 +171,6 @@ mutation CreatePerson($input: Input!) {
 
 - Pegamos apenas os dados que necessitamos, melhorando a performance ao "montar" telas complexas.
 - Problemas que o modelo REST não havia solucionado de forma apropriada.
-
 
 ## Schemas com tipagem forte
 
@@ -178,4 +203,4 @@ mutation CreatePerson($input: Input!) {
 - Analisar a query do client, validar o schema e retornar respostas em JSON.
 - Executar o resolver pra cada campo.
 
-## Um dos mais populares GraphQL clients é o `Apollo server`.
+## Um dos mais populares GraphQL servers é o `Apollo server`.

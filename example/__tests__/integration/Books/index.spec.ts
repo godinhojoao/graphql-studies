@@ -1,4 +1,4 @@
-import { server } from '../../../src/app';
+import { server } from '../../../src/app'
 
 describe('Books queries', () => {
   it('Should return all unarchived books', async () => {
@@ -12,7 +12,7 @@ describe('Books queries', () => {
             archived
           }
         }`
-    });
+    })
 
     expect(response.errors).toBeUndefined()
     expect(response.data).toEqual({
@@ -47,7 +47,7 @@ describe('Books queries', () => {
       variables: {
         getBookId: 2
       }
-    });
+    })
 
     expect(response.errors).toBeUndefined()
     expect(response.data).toEqual({
@@ -62,7 +62,6 @@ describe('Books queries', () => {
 })
 
 describe('Books mutations', () => {
-
   describe('Success calls', () => {
     it('Should create a book as expected', async () => {
       const response = await server.executeOperation({
@@ -82,7 +81,7 @@ describe('Books mutations', () => {
             archived: false
           }
         }
-      });
+      })
 
       expect(response.errors).toBeUndefined()
       expect(response.data).toEqual({
@@ -109,7 +108,7 @@ describe('Books mutations', () => {
         variables: {
           id: 4
         }
-      });
+      })
 
       expect(response.errors).toBeUndefined()
       expect(response.data).toEqual({
@@ -137,10 +136,10 @@ describe('Books mutations', () => {
           id: 1,
           updateBookInput: {
             author: 'Testador brabo',
-            title: 'Livro legalzao',
+            title: 'Livro legalzao'
           }
         }
-      });
+      })
 
       expect(response.errors).toBeUndefined()
       expect(response.data).toEqual({
@@ -170,10 +169,10 @@ describe('Books mutations', () => {
           id: 199,
           updateBookInput: {
             author: 'Testador brabo',
-            title: 'Livro legalzao',
+            title: 'Livro legalzao'
           }
         }
-      });
+      })
 
       expect(response.errors).toEqual([
         {
@@ -202,7 +201,7 @@ describe('Books mutations', () => {
         variables: {
           id: 999
         }
-      });
+      })
 
       expect(response.errors).toEqual([
         {
@@ -235,11 +234,11 @@ describe('Books mutations', () => {
             archived: false
           }
         }
-      });
+      })
 
       expect(response.errors).toEqual([
         {
-          extensions: { code: 'BAD_USER_INPUT', },
+          extensions: { code: 'BAD_USER_INPUT' },
           locations: [{
             column: 30,
             line: 2
@@ -264,14 +263,14 @@ describe('Books mutations', () => {
           id: 1,
           updateBookInput: {
             author: 'Testador brabo',
-            title: 'Livro do joãooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
+            title: 'Livro do joãooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo'
           }
         }
-      });
+      })
 
       expect(response.errors).toEqual([
         {
-          extensions: { code: 'BAD_USER_INPUT', },
+          extensions: { code: 'BAD_USER_INPUT' },
           locations: [{
             column: 41,
             line: 2
