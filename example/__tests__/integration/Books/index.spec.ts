@@ -216,5 +216,69 @@ describe('Books mutations', () => {
         }
       ])
     })
+
+    it('Should not create a book sending a title with more than 80 characters', async () => {
+      const response = await server.executeOperation({
+        query: `
+        mutation createBook ($createBookInput: CreateBookInput!) {
+          createBook (input: $createBookInput) {
+            id,
+            author,
+            title,
+            archived
+          }
+        }`,
+        variables: {
+          createBookInput: {
+            title: 'Livro do joãooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
+            author: 'Claúdinho',
+            archived: false
+          }
+        }
+      });
+
+      expect(response.errors).toEqual([
+        {
+          extensions: { code: 'BAD_USER_INPUT', },
+          locations: [{
+            column: 30,
+            line: 2
+          }],
+          message: 'Variable "$createBookInput" got invalid value "Livro do joãooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" at "createBookInput.title"; Expected type "title_String_maxLength_80". Must be no more than 80 characters in length'
+        }
+      ])
+    })
+
+    it('Should not update a book sending a title with more than 80 characters', async () => {
+      const response = await server.executeOperation({
+        query: `
+        mutation updateBook ($id: Int!, $updateBookInput: UpdateBookInput!) {
+          updateBook (id: $id, input: $updateBookInput) {
+            id,
+            author,
+            title,
+            archived
+          }
+        }`,
+        variables: {
+          id: 1,
+          updateBookInput: {
+            author: 'Testador brabo',
+            title: 'Livro do joãooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
+          }
+        }
+      });
+
+      expect(response.errors).toEqual([
+        {
+          extensions: { code: 'BAD_USER_INPUT', },
+          locations: [{
+            column: 41,
+            line: 2
+          }],
+          message: 'Variable "$updateBookInput" got invalid value "Livro do joãooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" at "updateBookInput.title"; Expected type "title_String_maxLength_80". Must be no more than 80 characters in length'
+        }
+      ])
+    })
   })
 })

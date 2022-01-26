@@ -20,13 +20,13 @@ const typeDefs = gql`
   }
 
   input CreateBookInput {
-    title: String
+    title: String @constraint(maxLength: 80)
     author: String
     archived: Boolean
   }
 
   input UpdateBookInput {
-    title: String
+    title: String @constraint(maxLength: 80)
     author: String
   }
 `

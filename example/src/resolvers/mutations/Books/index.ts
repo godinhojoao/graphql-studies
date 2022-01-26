@@ -6,7 +6,7 @@ const createBook = async (_: never, { input }: { input: Partial<Book> }, { books
 }
 
 const updateBook = async (
-  _: never,
+  _: unknown,
   { id, input }: UpdateBookInput,
   { booksDb }: { booksDb: Db }
 ): Promise<Book | ApolloError> => {
@@ -20,7 +20,7 @@ const updateBook = async (
 }
 
 const deleteBook = async (
-  _: never, { id }: { id: number },
+  _: unknown, { id }: { id: number },
   { booksDb }: { booksDb: Db }
 ): Promise<Book | ApolloError> => {
   const bookToDelete = await booksDb.getBookById(id)

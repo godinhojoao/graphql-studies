@@ -4,7 +4,7 @@ export async function up (knex: Knex): Promise<void> {
   return knex.schema.createTable('books', table => {
     table.increments('id').primary()
     table.string('author').notNullable()
-    table.string('title').notNullable()
+    table.string('title', 80).notNullable()
     table.boolean('archived').notNullable().defaultTo(false)
     table.timestamp('created_at').defaultTo(knex.fn.now())
   })
