@@ -1,15 +1,16 @@
 {
   "name": "graphql-studies",
   "version": "1.0.0",
-  "description": "- Uma linguagem de consulta, não é uma biblioteca, não é um framework nem nada do tipo. - Não importa a linguagem: javascript, php, etc... GraphQL pode ser utilizado por qualquer linguagem, pois é apenas uma linguagem para consulta.",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start-dev": "nodemon --watch 'src/' --exec 'ts-node src/app.ts' -e ts",
     "start-prod": "tsc && node dist/src/app.js",
-    "test": "npm run recreate-db && npm run seed-db && jest --forceExit",
+    "test": "npm run recreate-db && npm run migration-db && npm run seed-db && jest --forceExit",
     "build": "tsc",
     "lint": "npx eslint .",
-    "recreate-db": "npx knex migrate:rollback --all && npx knex migrate:latest",
+    "recreate-db": "ts-node 'src/../bin/recreate-db.ts'",
+    "migration-db": "npx knex migrate:rollback --all && npx knex migrate:latest",
     "seed-db": "npx knex seed:run"
   },
   "repository": {
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",
+    "@types/pg": "^8.6.4",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "eslint": "^7.32.0",
