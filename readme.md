@@ -3,6 +3,16 @@
 - Uma linguagem de consulta, não é uma biblioteca, não é um framework nem nada do tipo.
 - Não importa a linguagem: javascript, php, etc... GraphQL pode ser utilizado por qualquer linguagem, pois é apenas uma linguagem para consulta.
 
+# Que problema o GraphQL resolve principalmente ?
+- O que é `underfetching` ?
+ - Quando a gente busca menos dados do que o necessário.
+
+- O que é `overfetching` ?
+ - Quando a gente busca mais dados do que o necessário.
+ - Por exemplo: precisamos montar uma tela que só mostra o nome e o e-mail do usuário, mas pegamos tudo que tem no usuário, como: idade, altura, etc...
+
+## Com rest não é possível escolher quais campos "pegar" exatamente, resultando muitas vezes em um overfetching.
+
 # Principais conceitos
 
 ## Schemas and Types ( alguns )

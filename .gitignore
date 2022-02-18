@@ -1,3 +1,4 @@
-/example/node_modules
-/example/__tests__/coverage
-/example/dist
+/client-example/node_modules
+/server-example/node_modules
+/server-example/__tests__/coverage
+/server-example/dist
