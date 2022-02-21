@@ -1,15 +1,20 @@
+# Apresentações com mais detalhes:
+
+- https://docs.google.com/presentation/d/e/2PACX-1vTRxoMZIBgvrHhpDLYjJT8y61CpyHfzNDs4S-Yv1yJVBuInrUSZ29NuSFVlaeSMG3Zu0q-0EYyZoZjE/pub?start=false&loop=false&delayms=60000
+
 # O que é GraphQL ?
 
 - Uma linguagem de consulta, não é uma biblioteca, não é um framework nem nada do tipo.
 - Não importa a linguagem: javascript, php, etc... GraphQL pode ser utilizado por qualquer linguagem, pois é apenas uma linguagem para consulta.
 
 # Que problema o GraphQL resolve principalmente ?
+
 - O que é `underfetching` ?
- - Quando a gente busca menos dados do que o necessário.
+- Quando a gente busca menos dados do que o necessário.
 
 - O que é `overfetching` ?
- - Quando a gente busca mais dados do que o necessário.
- - Por exemplo: precisamos montar uma tela que só mostra o nome e o e-mail do usuário, mas pegamos tudo que tem no usuário, como: idade, altura, etc...
+- Quando a gente busca mais dados do que o necessário.
+- Por exemplo: precisamos montar uma tela que só mostra o nome e o e-mail do usuário, mas pegamos tudo que tem no usuário, como: idade, altura, etc...
 
 ## Com rest não é possível escolher quais campos "pegar" exatamente, resultando muitas vezes em um overfetching.
 
